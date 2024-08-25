@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum of Multiples</title>
+</head>
+<body>
+    <h1>Sum of Multiples of 3 or 5 Below 1000</h1>
+    <% 
+        // Function to calculate the sum of multiples of 3 or 5
+        function sumOfMultiples(limit) {
+            let sum = 0;
+            for (let i = 0; i < limit; i++) {
+                if (i % 3 === 0 || i % 5 === 0) {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+
+        // Calculate the sum for the limit of 1000
+        let limit = 1000;
+        let sum = sumOfMultiples(limit);
+    %>
+    <p>The sum of all multiples of 3 or 5 below <%= limit %> is: <%= sum %></p>
+</body>
+</html>

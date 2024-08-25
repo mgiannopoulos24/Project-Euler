@@ -1,0 +1,18 @@
+program sum_multiples
+    implicit none
+    integer :: limit, i, sum
+
+    ! Set the limit
+    limit = 1000
+    sum = 0
+
+    ! Loop through numbers below the limit
+    do i = 1, limit - 1
+        if (mod(i, 3) == 0 .or. mod(i, 5) == 0) then
+            sum = sum + i
+        end if
+    end do
+
+    ! Output the result
+    print *, "The sum of all multiples of 3 or 5 below ", limit, " is: ", sum
+end program sum_multiples
