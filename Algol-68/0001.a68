@@ -1,0 +1,9 @@
+BEGIN
+    INT sum := 0;
+    FOR x FROM 0 TO 999 DO
+        IF (x MOD 3 = 0) OR (x MOD 5 = 0) THEN
+            sum +:= x
+        FI
+    OD;
+    print(("The sum of multiples of 3 or 5 below 1000 is: ", sum))
+END
