@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fibonacci Sum</title>
+</head>
+<body>
+  <h1>Sum of the even-valued terms</h1>
+  <%
+    // Initialize the first two terms of the Fibonacci sequence
+    let a = 1;
+    let b = 2;
+    let sum = 0;
+    const limit = 4000000;
+  
+    // Iterate until the terms exceed four million
+    while (a <= limit) {
+      // Check if the term is even
+      if (a % 2 === 0) {
+        sum += a;
+      }
+  
+      // Generate the next Fibonacci number
+      let next = a + b;
+      a = b;
+      b = next;
+    }
+  %>
+  <p>The sum of the even-valued terms is <%= sum%></p>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+BEGIN
+  # Initialize the first two terms of the Fibonacci sequence #
+  INT a := 1;
+  INT b := 2;
+  INT sum := 0;
+
+  # Iterate until the terms exceed four million #
+  WHILE a <= 4000000 DO
+    # Check if the term is even #
+    IF a MOD 2 = 0 THEN
+      sum := sum + a
+    FI;
+
+    # Generate the next Fibonacci number #
+    INT next := a + b;
+    a := b;
+    b := next
+  OD;
+  print(("The sum of the even-valued terms is: ", sum))
+END

@@ -1,0 +1,29 @@
+program fibonacci_sum_even
+    implicit none
+
+    integer :: term1, term2, nextTerm
+    integer :: sum_even
+    integer, parameter :: max_value = 4000000
+
+    ! Initialize the first two terms of the Fibonacci sequence
+    term1 = 1
+    term2 = 2
+    sum_even = 0
+
+    ! Loop to generate Fibonacci numbers and sum the even ones
+    do while (term1 <= max_value)
+        ! Check if the current term is even
+        if (mod(term1, 2) == 0) then
+            sum_even = sum_even + term1
+        end if
+        
+        ! Generate the next term in the Fibonacci sequence
+        nextTerm = term1 + term2
+        term1 = term2
+        term2 = nextTerm
+    end do
+
+    ! Output the result
+    print *, "Sum of the even-valued terms:", sum_even
+
+end program fibonacci_sum_even
