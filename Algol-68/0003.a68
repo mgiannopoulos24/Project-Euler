@@ -1,0 +1,37 @@
+BEGIN
+    # Function to find the largest prime factor #
+    PROC largest prime factor = (LONG INT n) LONG INT:
+    BEGIN
+        LONG INT largest := 0;
+        LONG INT num := n;
+        
+        # Remove all factors of 2 #
+        WHILE num MOD 2 = 0 DO
+            largest := 2;
+            num := num OVER 2
+        OD;
+        
+        # Remove all factors of odd numbers #
+        LONG INT i := 3;
+        WHILE i * i <= num DO
+            WHILE num MOD i = 0 DO
+                largest := i;
+                num := num OVER i
+            OD;
+            i := i + 2
+        OD;
+        
+        # If num is a prime number greater than 2 #
+        IF num > 2 THEN
+            largest := num
+        FI;
+        
+        largest
+    END;
+    
+    # Main program #
+    LONG INT number = 600851475143;
+    LONG INT result = largest prime factor(number);
+    
+    printf(($"The largest prime factor of "g" is "gl$, number, result))
+END
