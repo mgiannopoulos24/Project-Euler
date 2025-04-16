@@ -1,0 +1,35 @@
+BEGIN
+    # Function to check if a number is a palindrome #
+    PROC is_palindrome = (INT n) BOOL:
+    BEGIN
+        STRING s := whole(n, 0); # Convert the number to a string #
+        INT len := UPB s;
+        BOOL result := TRUE;
+        FOR i TO ENTIER(len / 2) WHILE result DO
+            IF s[i] /= s[len - i + 1] THEN
+                result := FALSE
+            FI
+        OD;
+        result
+    END;
+
+    INT max_palindrome := 0;
+    INT factor1 := 0;
+    INT factor2 := 0;
+
+    # Iterate over all pairs of 3-digit numbers #
+    FOR i FROM 999 BY -1 TO 100 DO
+        FOR j FROM i BY -1 TO 100 DO
+            INT product := i * j;
+            IF product > max_palindrome AND is_palindrome(product) THEN
+                max_palindrome := product;
+                factor1 := i;
+                factor2 := j
+            FI
+        OD
+    OD;
+
+    # Output the result #
+    print(("The largest palindrome is ", whole(max_palindrome, 0)));
+    print((" = ", whole(factor1, 0), " x ", whole(factor2, 0)))
+END
