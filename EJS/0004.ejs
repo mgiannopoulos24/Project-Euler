@@ -1,0 +1,36 @@
+<%
+  // Function to check if a number is a palindrome
+  function isPalindrome(num) {
+    const str = num.toString();
+    return str === str.split('').reverse().join('');
+  }
+
+  // Function to find the largest palindrome
+  function largestPalindrome() {
+    let maxPalindrome = 0;
+
+    // Iterate over all pairs of 3-digit numbers
+    for (let i = 999; i >= 100; i--) { // Start from 999 and decrement to 100
+      for (let j = i; j >= 100; j--) { // Ensure j <= i to avoid redundant calculations
+        const product = i * j;
+
+        // If the product is smaller than the largest palindrome found, break
+        if (product <= maxPalindrome) {
+          break;
+        }
+
+        // Check if the product is a palindrome
+        if (isPalindrome(product)) {
+          maxPalindrome = product;
+        }
+      }
+    }
+
+    return maxPalindrome;
+  }
+
+  // Calculate the largest palindrome
+  const result = largestPalindrome();
+%>
+
+The largest palindrome made from the product of two 3-digit numbers is: <%= result %>
