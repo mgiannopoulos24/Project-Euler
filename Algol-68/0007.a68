@@ -1,0 +1,35 @@
+BEGIN
+    # Function to check if a number is prime #
+    PROC is_prime = (INT n) BOOL:
+    BEGIN
+        IF n <= 1 THEN
+            BOOL(FALSE)
+        ELIF n = 2 THEN
+            BOOL(TRUE)
+        ELIF n MOD 2 = 0 THEN
+            BOOL(FALSE)
+        ELSE
+            BOOL result := TRUE;
+            FOR i FROM 3 BY 2 WHILE i * i <= n DO
+                IF n MOD i = 0 THEN
+                    result := FALSE
+                FI
+            OD;
+            result
+        FI
+    END;
+
+    # Find the 10001st prime number #
+    INT target := 10001;
+    INT count := 0;
+    INT num := 1;
+    
+    WHILE count < target DO
+        num := num + 1;
+        IF is_prime(num) THEN
+            count := count + 1
+        FI
+    OD;
+    
+    print(("The ", whole(target, 0), "st prime number is: ", whole(num, 0), new line))
+END

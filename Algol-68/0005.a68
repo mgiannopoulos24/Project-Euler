@@ -1,0 +1,82 @@
+BEGIN
+    # Calculate smallest number divisible by all integers from 1 to 20 #
+    INT max_num := 20;
+    
+    # Initialize array to keep track of maximum power of each prime factor #
+    [100]INT max_powers; # Using a fixed size array with enough space #
+    FOR i TO UPB max_powers DO
+        max_powers[i] := 0
+    OD;
+    
+    # Process each number from 2 to max_num #
+    FOR num FROM 2 TO max_num DO
+        # Check if num is prime #
+        BOOL is_prime := TRUE;
+        FOR i FROM 2 TO ENTIER(sqrt(num)) DO
+            IF num MOD i = 0 THEN
+                is_prime := FALSE;
+                GO TO not_prime
+            FI
+        OD;
+        
+        not_prime:
+        IF is_prime THEN
+            # For each prime number, find its highest power within range #
+            INT prime := num;
+            WHILE prime <= max_num DO
+                # Determine the highest power of this prime factor within the range #
+                INT power := 0;
+                INT temp := 1;
+                WHILE temp <= max_num DO
+                    temp := temp * prime;
+                    power := power + 1
+                OD;
+                power := power - 1;
+                
+                IF power > 0 THEN
+                    # Update the max_powers array with the highest power #
+                    max_powers[prime] := power
+                FI;
+                
+                # Find next prime number #
+                prime := prime + 1;
+                BOOL found_prime := FALSE;
+                WHILE NOT found_prime DO
+                    is_prime := TRUE;
+                    FOR i FROM 2 TO ENTIER(sqrt(prime)) DO
+                        IF prime MOD i = 0 THEN
+                            is_prime := FALSE;
+                            GO TO not_next_prime
+                        FI
+                    OD;
+                    
+                    not_next_prime:
+                    IF is_prime THEN 
+                        found_prime := TRUE
+                    ELSE
+                        prime := prime + 1
+                    FI
+                OD
+            OD
+        FI
+    OD;
+    
+    # Calculate the result by multiplying prime factors raised to their max power #
+    INT result := 1;
+    FOR prime FROM 2 TO max_num DO
+        IF max_powers[prime] > 0 THEN
+            # Using a different approach to calculate prime^power #
+            INT power_value := 1;
+            INT count := max_powers[prime];
+            WHILE count > 0 DO
+                power_value := power_value * prime;
+                count := count - 1
+            OD;
+            
+            result := result * power_value
+        FI
+    OD;
+    
+    print(("The smallest number divisible by all integers from 1 to ", whole(max_num, 0), 
+           " is: ", whole(result, 0), new line))
+END

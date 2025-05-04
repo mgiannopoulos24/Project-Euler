@@ -1,0 +1,26 @@
+BEGIN
+    
+    # Initialize variables #
+    INT sum_of_squares := 0;
+    INT sum := 0;
+    INT square_of_sum := 0;
+    INT difference := 0;
+    
+    # Loop through the first 100 natural numbers #
+    FOR n FROM 1 TO 100 DO
+        # Calculate the sum of squares #
+        sum_of_squares := sum_of_squares + n * n;
+        
+        # Calculate the sum of the numbers #
+        sum := sum + n
+    OD;
+    
+    # Calculate the square of the sum #
+    square_of_sum := sum * sum;
+    
+    # Calculate the difference #
+    difference := square_of_sum - sum_of_squares;
+    
+    # Output the result #
+    print(("The difference is: ", whole(difference, 0), new line))
+END
