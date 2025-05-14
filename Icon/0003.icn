@@ -1,0 +1,26 @@
+procedure main()
+    local n, max_prime, i
+
+    n := 600851475143
+    max_prime := -1
+
+    # Remove all factors of 2
+    while n % 2 = 0 do {
+        max_prime := 2
+        n := n / 2
+    }
+
+    # Check for odd factors from 3 upwards
+    every i := 3 to sqrt(n) + 1 by 2 do {
+        while n % i = 0 do {
+            max_prime := i
+            n := n / i
+        }
+    }
+
+    # If n is a prime greater than 2
+    if n > 2 then
+        max_prime := n
+
+    write("The largest prime factor is: ", max_prime)
+end

@@ -1,0 +1,34 @@
+program largest_prime_factor
+    implicit none
+    integer(kind=8) :: n, i, max_prime
+
+    ! Initialize the number
+    n = 600851475143_8
+    
+    ! Variable to store the largest prime factor
+    max_prime = -1_8
+
+    ! Divide out all factors of 2
+    do while (mod(n, 2_8) == 0)
+        max_prime = 2_8
+        n = n / 2_8
+    end do
+
+    ! Check for odd factors from 3 up to sqrt(n)
+    i = 3_8
+    do while (i*i <= n)
+        do while (mod(n, i) == 0)
+            max_prime = i
+            n = n / i
+        end do
+        i = i + 2_8
+    end do
+
+    ! If n is a prime greater than 2, then it's the largest prime factor
+    if (n > 2_8) then
+        max_prime = n
+    end if
+
+    print *, "The largest prime factor is: ", max_prime
+
+end program largest_prime_factor
