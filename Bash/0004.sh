@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Function to check if a number is a palindrome
 is_palindrome() {
     local num=$1
