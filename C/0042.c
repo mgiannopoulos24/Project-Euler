@@ -5,7 +5,7 @@
 
 #define MAX_WORDS 2000
 #define MAX_WORD_LEN 50
-#define MAX_TRIANGLE 1000 // Sufficiently large upper limit
+#define MAX_TRIANGLE 1000 
 
 // Function to compute word value
 int word_value(const char *word) {
@@ -44,7 +44,7 @@ int main() {
         triangle_numbers[n - 1] = n * (n + 1) / 2;
     }
 
-    char line[90000]; // Big enough to read entire file content
+    char line[90000]; 
     if (fgets(line, sizeof(line), fp) == NULL) {
         printf("Error reading file.\n");
         fclose(fp);
