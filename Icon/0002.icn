@@ -1,0 +1,19 @@
+procedure main()
+    local a, b, sum
+
+    a := 1     # First Fibonacci number
+    b := 2     # Second Fibonacci number
+    sum := 0   # Sum of even-valued terms
+
+    while a <= 4000000 do {
+        if a % 2 = 0 then
+            sum +:= a
+
+        # Generate next Fibonacci number
+        c := a + b
+        a := b
+        b := c
+    }
+
+    write("Sum of even-valued Fibonacci terms not exceeding 4 million: ", sum)
+end

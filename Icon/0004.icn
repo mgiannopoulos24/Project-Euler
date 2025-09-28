@@ -1,0 +1,20 @@
+procedure main()
+    local max_palindrome, i, j, product
+
+    max_palindrome := 0
+
+    # Loop from 999 down to 100
+    every i := 999 to 100 by -1 do
+        every j := i to 100 by -1 do {
+            product := i * j
+            if is_palindrome(product) & product > max_palindrome then
+                max_palindrome := product
+        }
+
+    write("The largest palindromic number is: ", max_palindrome)
+end
+
+# Helper function: check if a number is a palindrome
+procedure is_palindrome(n)
+    return n == integer(reverse(string(n)))
+end
